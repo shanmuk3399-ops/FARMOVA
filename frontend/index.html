@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Farmova — Farmer to Buyer Marketplace</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="offline.js"></script>
+    <script src="api.js"></script>
+    <script src="auth.js"></script>
+</head>
+
+
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen">
+
+
+    <!-- Header -->
+
+    <header class="bg-slate-800 border-b border-slate-700">
+
+        <div
+            class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+        >
+
+            <h1 class="text-xl font-bold text-emerald-400">
+                🌾 Farmova
+            </h1>
+
+            <div class="flex items-center gap-3">
+                <span id="farmovaOfflineStatus" class="hidden text-[10px] font-bold text-amber-300 bg-amber-500/10 border border-amber-500/30 px-2 py-1 rounded-lg">
+                    OFFLINE MODE
+                </span>
+                <span class="text-xs text-slate-400">
+                    Direct Farmer-to-Buyer Marketplace
+                </span>
+            </div>
+
+        </div>
+
+    <div data-auth-nav class="max-w-7xl mx-auto px-6 pb-3 flex justify-end gap-2">
+        <!-- Fallback links: auth.js replaces these when it loads successfully -->
+        <a href="login.html" class="text-xs text-emerald-400 border border-emerald-500/40 px-3 py-1.5 rounded-lg">Login</a>
+        <a href="register.html" class="text-xs text-slate-300 border border-slate-600 px-3 py-1.5 rounded-lg">Register</a>
+    </div></header>
+
+
+
+    <!-- Hero -->
+
+    <main class="max-w-7xl mx-auto px-6 py-10">
+
+
+        <section class="text-center mb-10">
+
+            <h2
+                class="text-3xl md:text-5xl font-bold mb-4"
+            >
+                Connecting Farmers Directly With Buyers
+            </h2>
+
+            <p class="text-slate-400 max-w-2xl mx-auto">
+                AI-powered marketplace for fair pricing,
+                direct selling, produce aggregation and smart logistics.
+            </p>
+
+        </section>
+
+
+
+        <!-- Main Portals -->
+
+        <div id="portalGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+
+
+            <!-- Farmer -->
+
+            <div data-role-only="FARMER" class="bg-slate-800 border border-slate-700 rounded-xl p-6">
+
+                <div class="text-3xl mb-4">
+                    🌾
+                </div>
+
+                <h3 class="text-xl font-bold mb-2">
+                    Farmer Portal
+                </h3>
+
+                <p class="text-sm text-slate-400 mb-5">
+                    List your harvest, check expected earnings
+                    and manage produce.
+                </p>
+
+                <div class="grid grid-cols-2 gap-2">
+
+                    <a
+                        href="farmer-dashboard.html"
+                        class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-center font-bold py-2 rounded-lg text-sm"
+                    >
+                        Dashboard
+                    </a>
+
+                    <a
+                        href="add-produce.html"
+                        class="border border-slate-600 hover:bg-slate-700 text-center py-2 rounded-lg text-sm"
+                    >
+                        Add Produce
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Buyer -->
+
+            <div data-role-only="BUYER" class="bg-slate-800 border border-slate-700 rounded-xl p-6">
+
+                <div class="text-3xl mb-4">
+                    🛒
+                </div>
+
+                <h3 class="text-xl font-bold mb-2">
+                    Buyer Marketplace
+                </h3>
+
+                <p class="text-sm text-slate-400 mb-5">
+                    Search farmer listings, compare prices
+                    and place offers.
+                </p>
+
+                <a
+                    href="buyer-dashboard.html"
+                    class="block bg-emerald-500 hover:bg-emerald-600 text-slate-950 text-center font-bold py-2 rounded-lg text-sm"
+                >
+                    OPEN MARKETPLACE
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Features -->
+
+        <div id="featureGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+
+            <a data-role-only="FARMER"
+                href="ai-page.html"
+                class="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:border-emerald-500"
+            >
+
+                <div class="text-2xl mb-3">
+                    🤖
+                </div>
+
+                <h3 class="font-bold">
+                    AI Pricing
+                </h3>
+
+                <p class="text-xs text-slate-400 mt-2">
+                    AI-based price recommendations.
+                </p>
+
+            </a>
+
+
+
+            <a data-role-only="FPO"
+                href="fpo-page.html"
+                class="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:border-emerald-500"
+            >
+
+                <div class="text-2xl mb-3">
+                    🏢
+                </div>
+
+                <h3 class="font-bold">
+                    FPO Aggregation
+                </h3>
+
+                <p class="text-xs text-slate-400 mt-2">
+                    Combine farmer produce into bulk pools.
+                </p>
+
+            </a>
+
+
+
+            <a
+                href="logistics-page.html"
+                class="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:border-emerald-500"
+            >
+
+                <div class="text-2xl mb-3">
+                    🚚
+                </div>
+
+                <h3 class="font-bold">
+                    Smart Logistics
+                </h3>
+
+                <p class="text-xs text-slate-400 mt-2">
+                    Optimize transport and route planning.
+                </p>
+
+            </a>
+
+
+
+            <a data-role-only="FARMER"
+                href="earnings-page.html"
+                class="bg-slate-800 border border-slate-700 rounded-xl p-5 hover:border-emerald-500"
+            >
+
+                <div class="text-2xl mb-3">
+                    💰
+                </div>
+
+                <h3 class="font-bold">
+                    Earnings
+                </h3>
+
+                <p class="text-xs text-slate-400 mt-2">
+                    Track expected farmer earnings.
+                </p>
+
+            </a>
+
+        </div>
+
+
+
+        <!-- Voice -->
+
+        <div
+            class="bg-slate-800 border border-slate-700 rounded-xl p-6 mt-6 flex flex-col md:flex-row justify-between items-center gap-4"
+        >
+
+            <div>
+
+                <h3 class="font-bold text-lg">
+                    🎙️ Multilingual Voice Assistant
+                </h3>
+
+                <p class="text-sm text-slate-400 mt-1">
+                    Use voice interaction in English, Hindi,
+                    Telugu or Marathi.
+                </p>
+
+            </div>
+
+            <a
+                href="voice-page.html"
+                class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold px-5 py-3 rounded-lg text-sm"
+            >
+                OPEN VOICE ASSISTANT
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+
+    <footer
+        class="border-t border-slate-800 text-center text-xs text-slate-500 py-6"
+    >
+        Farmova — AI-Powered Direct Farmer-to-Buyer Marketplace
+    </footer>
+
+
+</body>
+
+</html>

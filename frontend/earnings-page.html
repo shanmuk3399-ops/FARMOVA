@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Farmer Earnings — Farmova</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="api.js"></script><script src="auth.js"></script></head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col">
+<header class="bg-slate-800 border-b border-slate-700 px-6 py-4 flex justify-between items-center shadow-lg">
+<div class="flex items-center gap-3"><span class="text-2xl">💰</span><h1 class="text-xl font-bold text-emerald-400">Farmer Earnings & Net Payouts</h1></div>
+<a href="farmer-dashboard.html" class="text-xs text-slate-400 hover:text-slate-200 border border-slate-700 px-3 py-1.5 rounded-lg">← Back to Dashboard</a>
+</header>
+<main class="flex-1 max-w-4xl mx-auto w-full p-6 space-y-6">
+<section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<div class="bg-slate-800 p-4 rounded-xl border border-slate-700"><p class="text-xs text-slate-400">Total Revenue (Gross)</p><p id="grossRevenue" class="text-2xl font-extrabold text-slate-100 mt-1">₹2,50,000</p></div>
+<div class="bg-slate-800 p-4 rounded-xl border border-slate-700"><p class="text-xs text-slate-400">Total Deductions (Logistics + Fee)</p><p id="totalDeductions" class="text-2xl font-extrabold text-amber-400 mt-1">₹7,200</p></div>
+<div class="bg-slate-800 p-4 rounded-xl border border-emerald-500/40"><p class="text-xs text-emerald-400 font-bold">Net Payout to Bank</p><p id="netPayout" class="text-2xl font-extrabold text-emerald-400 mt-1">₹2,42,800</p></div>
+</section>
+<section class="bg-slate-800 rounded-xl border border-slate-700 p-5 shadow-xl">
+<h3 class="font-bold text-slate-200 text-sm mb-4">📄 Itemized Transaction Receipt (Order #FD-9921)</h3>
+<div class="space-y-3 text-xs divide-y divide-slate-700/60">
+<div class="flex justify-between pt-2"><span class="text-slate-400">Gross Sale Price (100 Qtl Wheat @ ₹2,500/Qtl)</span><span class="font-bold text-slate-100">₹2,50,000</span></div>
+<div class="flex justify-between pt-2 text-amber-400"><span>(-) Shared Transport Freight Cost (168 km @ pooled rate)</span><span>- ₹4,800</span></div>
+<div class="flex justify-between pt-2 text-amber-400"><span>(-) Farmova Platform Fee (1% Direct Trade Escrow)</span><span>- ₹2,400</span></div>
+<div class="flex justify-between pt-3 text-sm font-bold text-emerald-400 border-t border-emerald-500/30"><span>Estimated Bank Transfer Amount</span><span id="receiptNetPayout">₹2,42,800</span></div>
+</div>
+</section>
+</main>
+<script src="earnings.js"></script>
+</body>
+</html>

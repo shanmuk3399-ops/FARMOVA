@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>FPO Dashboard — Farmova</title><script src="https://cdn.tailwindcss.com"></script><script src="api.js"></script><script src="auth.js"></script></head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen">
+<header class="bg-slate-800 border-b border-slate-700 px-6 py-4 flex justify-between items-center shadow-lg"><div class="flex items-center gap-3"><span class="text-2xl">🏬</span><h1 class="text-xl font-bold text-emerald-400">Farmova FPO Aggregation Hub</h1></div><div class="flex gap-2"><a href="logistics-page.html" class="text-xs text-slate-300 bg-slate-700 px-3 py-1.5 rounded-lg border border-slate-600">Logistics</a><button id="logoutBtn" class="text-xs text-slate-300 border border-slate-700 px-3 py-1.5 rounded-lg">Logout</button><a href="index.html" class="text-xs text-slate-400 border border-slate-700 px-3 py-1.5 rounded-lg">← Home</a></div></header>
+<main class="max-w-6xl mx-auto w-full p-6 space-y-6">
+<section class="bg-slate-800 rounded-xl border border-slate-700 p-5 shadow-xl flex flex-col md:flex-row justify-between gap-4"><div><h2 id="fpoName" class="text-lg font-bold text-slate-100">Loading FPO...</h2><p id="fpoMeta" class="text-xs text-slate-400 mt-1">Loading FPO details...</p></div><div class="flex gap-2"><button id="refreshMembersBtn" class="bg-slate-700 border border-slate-600 px-3 py-2 rounded-lg text-xs">Refresh</button></div></section>
+<section class="bg-slate-800 rounded-xl border border-slate-700 p-5 shadow-xl"><div class="flex justify-between items-center gap-3 mb-4"><div><h3 class="font-bold text-sm">FPO Setup</h3><p class="text-xs text-slate-400 mt-1">Create your FPO once, then add farmer members.</p></div></div><div class="grid grid-cols-1 md:grid-cols-3 gap-3"><input id="fpoCreateName" placeholder="FPO name" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs"><input id="fpoCreateLocation" placeholder="FPO location" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs"><button id="createFpoBtn" class="bg-emerald-500 text-slate-950 font-bold rounded-lg text-xs px-3">CREATE / UPDATE FPO</button></div><p id="fpoCreateMsg" class="text-xs mt-2 min-h-[16px]"></p></section>
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6"><aside class="bg-slate-800 rounded-xl border border-slate-700 p-5 shadow-xl"><div class="flex justify-between items-center mb-4"><h3 class="font-bold text-sm">👨‍🌾 FPO Members</h3><span id="memberCount" class="text-xs text-emerald-400">0</span></div><div class="flex gap-2 mb-2"><select id="farmerIdInput" class="flex-1 bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs">
+    <option value="">Select Farmer</option>
+</select><button id="addFarmerBtn" class="bg-emerald-500 text-slate-950 font-bold px-3 rounded-lg text-xs">Add</button></div><p id="addFarmerMsg" class="text-xs min-h-[16px] mb-3"></p><div id="membersList" class="space-y-2 max-h-80 overflow-y-auto"><p class="text-xs text-slate-400">Loading members...</p></div></aside>
+<div class="lg:col-span-2 bg-slate-800 rounded-xl border border-slate-700 p-5 shadow-xl"><div class="flex justify-between items-center mb-4"><div><h3 class="font-bold text-sm">🌾 Available Member Produce</h3><p class="text-xs text-slate-400 mt-1">Live produce available from FPO farmers.</p></div><span id="produceCount" class="text-xs text-emerald-400">0</span></div><div id="produceList" class="grid md:grid-cols-2 gap-3 max-h-96 overflow-y-auto"><p class="text-xs text-slate-400">Loading produce...</p></div></div></section>
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-6"><div class="bg-slate-800 rounded-xl border border-slate-700 p-5 shadow-xl"><h3 class="font-bold text-sm mb-2">📊 Produce Suitability Scores</h3>
+<p class="text-xs text-slate-400 mb-4">
+  Compatibility between farmer produce and bulk buyer requirements.
+</p><div id="suitabilityList" class="space-y-2 max-h-72 overflow-y-auto"><p class="text-xs text-slate-400">Loading suitability...</p></div></div><div class="bg-slate-800 rounded-xl border border-slate-700 p-5 shadow-xl"><div class="flex justify-between items-center mb-4"><h3 class="font-bold text-sm">📦 Aggregation Batches</h3><div class="flex gap-2"><button id="createAggBtn" class="bg-emerald-500 text-slate-950 font-bold px-3 py-1.5 rounded-lg text-xs">Create Batch</button><button id="autoAggBtn" class="bg-blue-500 text-white font-bold px-3 py-1.5 rounded-lg text-xs">Auto Aggregate</button></div></div><div class="grid grid-cols-3 gap-2 mb-3"><input id="aggCrop" placeholder="Crop" class="bg-slate-900 border border-slate-700 rounded-lg px-2 py-2 text-xs"><input id="aggQty" type="number" step="0.01" placeholder="Required Qtl" class="bg-slate-900 border border-slate-700 rounded-lg px-2 py-2 text-xs"><input id="aggLoc" placeholder="Destination" class="bg-slate-900 border border-slate-700 rounded-lg px-2 py-2 text-xs"></div><p id="aggMsg" class="text-xs min-h-[16px] mb-2"></p><div class="text-xs text-slate-400 mb-2">Batch count: <span id="batchCount" class="text-emerald-400">0</span></div><div id="batchesList" class="space-y-2 max-h-72 overflow-y-auto"><p class="text-xs text-slate-400">Loading batches...</p></div></div></section>
+<section class="bg-slate-800 rounded-xl border border-slate-700 p-5 shadow-xl"><h3 class="font-bold text-sm mb-4">🚛 Smart Bulk Order Matching</h3><div class="grid grid-cols-1 md:grid-cols-3 gap-3"><input id="matchCrop" placeholder="Bulk order crop" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs"><input id="matchQty" type="number" step="0.01" placeholder="Required Qtl" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs"><button id="matchBtn" class="bg-blue-500 text-white font-bold rounded-lg text-xs">MATCH BULK ORDER</button></div><p id="matchMsg" class="text-xs mt-3 min-h-[18px]"></p></section>
+<section class="bg-slate-800 rounded-xl border border-slate-700 p-5 shadow-xl"><div class="flex justify-between items-center mb-4"><div><h3 class="font-bold text-sm">🌾 Active Bulk Pools</h3><p class="text-xs text-slate-400 mt-1">Pools created by FPOs in the marketplace.</p></div></div><div id="poolsList" class="grid md:grid-cols-2 gap-3"><p class="text-xs text-slate-400">Loading pools...</p></div></section>
+</main><script src="fpo.js?v=stable4">
+async function loadFarmerOptions(){
+    const select=document.getElementById("farmerIdInput");
+    if(!select)return;
+    try{
+        const response=await fetch("http://127.0.0.1:8000/auth/farmers");
+        if(!response.ok)throw new Error("Could not load farmers");
+        const data=await response.json();
+        const farmers=Array.isArray(data)?data:(data.farmers||data.users||[]);
+        if(farmers.length){
+            select.innerHTML='<option value="">Select Farmer</option>'+farmers.map(f=>{
+                const id=f.id??f.user_id;
+                const name=f.name||f.username||("Farmer "+id);
+                return `<option value="${id}">${name} — ID ${id}</option>`;
+            }).join("");
+        }
+    }catch(e){
+        console.warn("Farmer list could not be loaded:",e);
+    }
+}
+document.addEventListener("DOMContentLoaded",loadFarmerOptions);
+</script></body></html>

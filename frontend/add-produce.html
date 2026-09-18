@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Produce — Farmova</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="api.js"></script><script src="auth.js"></script></head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen flex flex-col">
+<header class="bg-slate-800 border-b border-slate-700 px-6 py-4 flex justify-between items-center shadow-lg">
+<div class="flex items-center gap-3">
+<span class="text-2xl">🌾</span>
+<h1 class="text-xl font-bold text-emerald-400">List New Harvest Produce</h1>
+</div>
+<a href="farmer-dashboard.html" class="text-xs text-slate-400 hover:text-slate-200 border border-slate-700 px-3 py-1.5 rounded-lg">← Back to Dashboard</a>
+</header>
+<main class="flex-1 max-w-2xl mx-auto w-full p-6">
+<div class="bg-slate-800 border border-slate-700 rounded-xl p-6 shadow-xl">
+<h2 class="text-sm font-bold text-slate-200 mb-1">🌱 Add Your Produce</h2>
+<p class="text-xs text-slate-400 mb-5">Enter your harvest details and publish it to the Farmova marketplace.</p>
+<form id="produceForm" class="space-y-4">
+<div>
+<label class="block font-semibold mb-1 text-xs">Crop Name</label>
+<input id="cropName" type="text" placeholder="e.g. Tomatoes, Wheat, Basmati Rice" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-100 text-xs focus:outline-none focus:border-emerald-500" required>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-semibold mb-1 text-xs">Quantity (Quintal)</label>
+<input id="quantity" type="number" min="0.1" step="0.1" placeholder="100" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-100 text-xs focus:outline-none focus:border-emerald-500" required>
+</div>
+<div>
+<label class="block font-semibold mb-1 text-xs">Quality Grade</label>
+<select id="qualityGrade" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-100 text-xs focus:outline-none focus:border-emerald-500">
+<option value="Grade A (Premium)">Grade A (Premium)</option>
+<option value="Grade B (Standard)">Grade B (Standard)</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block font-semibold mb-1 text-xs">Expected Price per Quintal (₹)</label>
+<input id="expectedPrice" type="number" min="1" step="1" placeholder="2500" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-100 text-xs focus:outline-none focus:border-emerald-500" required>
+</div>
+<div>
+<label class="block font-semibold mb-1 text-xs">Pickup Location / Village</label>
+<input id="location" type="text" placeholder="e.g. Nashik, Maharashtra" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-100 text-xs focus:outline-none focus:border-emerald-500" required>
+</div>
+<div id="status" class="hidden rounded-lg p-3 text-xs text-center"></div>
+<button id="publishButton" type="submit" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-3 rounded-lg text-xs shadow-lg transition-all">
+PUBLISH LISTING
+</button>
+</form>
+</div>
+</main>
+<script src="add-produce.js?v=final2"></script>
+</body>
+</html>
