@@ -1,5 +1,4 @@
-const API_BASE_URL=localStorage.getItem("farmDirectApiBase")||"http://127.0.0.1:8000";
-function getToken(){return localStorage.getItem("farmDirectToken")||"";}
+const API_BASE_URL=localStorage.getItem("farmDirectApiBase")||"https://farmova.onrender.com";function getToken(){return localStorage.getItem("farmDirectToken")||"";}
 function getUser(){try{return JSON.parse(localStorage.getItem("farmDirectUser")||"null");}catch(e){return null;}}
 function setAuthSession(data){if(data?.access_token)localStorage.setItem("farmDirectToken",data.access_token);if(data?.user)localStorage.setItem("farmDirectUser",JSON.stringify(data.user));}
 function clearAuthSession(){localStorage.removeItem("farmDirectToken");localStorage.removeItem("farmDirectUser");}
